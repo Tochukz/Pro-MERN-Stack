@@ -24,7 +24,7 @@ Check babel installed verson
 
 npm gives us `npx` command  which resolves the correct local path of any executable  
 `$ npx babel ---verion`  
-`$ npx express --versiion`
+`$ npx express --version`
 
 Install the JSX transform preset for babel  
 `$ npm install --save-dev @babel/preset-react@7`  
@@ -41,3 +41,6 @@ Running babel after specifying presets in `.babelrc` file
 Installing nodemon  
 `$ npm install nodemon@1`  
 Using `forever` instead to restart the server on crashes ducring production.  
+
+## Chapter 3: React Component  
+[ES2015 Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)  
