@@ -83,3 +83,23 @@ class parentClass {
   state flows as props into children, events cause state changes, which flows back as props.  
 * In a well-designed application, most components would be stateless functions of their properties.   
   All states would be captured in a few components at the top of the hierarchy, from where the props of all the descendants are derived.  
+
+## Chapter 5: Express and GraphQLchp
+[Express Request](http://expressjs.com/en/api.html#req)   
+[Node.js Request](https://nodejs.org/api/http.html#http_class_http_incomingmessage)  
+[Express Response](http://expressjs.com/en/api.html#res)  
+[Node.js Response](https://nodejs.org/api/http.html#http_class_http_serverresponse)  
+
+__Install packages for About API__   
+`$ npm install graphql@0 apollo-server-express@2`   
+
+GraphQL queries are made by POST. To make query by GET do    
+`$ curl 'http://localhost:3000/graphql?query=query+\{+about+\}' `  
+It is the same as    
+``
+query {
+  about
+}
+``
+on the GraphQL playground.  
+[Async and Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)   
