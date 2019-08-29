@@ -103,3 +103,145 @@ query {
 ``
 on the GraphQL playground.  
 [Async and Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)   
+
+## Chapter 6: MongoDB  
+[MongoDB Schema](https://docs.mongodb.com/manual/core/schema-validation/index.html)   
+A database connection is restricted to accessing only one database, so to access multiple databases, multiple connections are required.  
+Unlike relational databases, MongoDB encourages denormalization, that is, storing related parts of a  
+document as embedded subdocuments rather than as separate collections (tables) in a relational database.  
+__MongoDB Services__   
+* [MongoDN Atlas](https://www.mongodb.com/cloud/atlas) A small database (shared RAM, 512 MB storage) is available for free.  
+* [mLab](https://mlab.com) A sandbox environment is available for free, limited to 500 MB storage.   
+* [Compose]((https://www.compose.com) A 30-day trial period is available, but a permanently free sandbox kind of option is not available.   
+
+[Mongo Shell Docs](https://docs.mongodb.com/manual/mongo)   
+__Mongo Shell Basic Operation__  
+Start the mongo shell  
+`$ mongo`  
+Find which databases are available  
+`> show databases`  
+Identify the current DB  
+`> db`  
+See what collections exists in the database  
+`> show collections`  
+
+__Note: Satabases and collections are really created only on the first write operation.__  
+
+Switch to a database called issuetracker  
+`> use issuetracker`  
+Create a new collection called employees  
+`> db.employees.insertOne({name: {first: "John", last: 'Doe'}, age: 44})`  
+You can use auto complete to find all the methods available in a collection: Type `db.employees.` and press the tab key.  
+Display all the documents in a collection  
+`> db.employees.find()`  
+Display all the documents in a nicely formatted form  
+`> db.employees.find().pretty()`  
+Doing JavaScript in the shell  
+```
+> let result = db.employees.find().toArray()  
+> result.forEach(e => print('First Name: ', e.name.first))  
+> result.forEach(e => printjson(e.name))  
+```
+To display methods available on the cursor object do  
+`> db.employees.find().help()`  
+This will display all the methods that can be chained to the cursor object.  
+
+__MongoDB CRUD Operation__   
+Erase a collections  
+`> db.employees.drop()`  
+
+__Create Operation__
+Create a documnet with our own ID  
+ `> db.employees.insertOne({_id: 1,  name: {first: 'John', last: 'Doe'}, age:44})`   
+Insert Mutiple documents in a collection  
+`> db.employees.insertMany([{id: 1, name: {first: 'John', last: 'Doe'}, age: 44}, {id: 2, name: {first: 'Jane', last: 'Doe'}, age: 16}])`   
+`> db.employees.insertMany([{id: 3, name: {first: 'Alice', last:'A'}, age: 32}, {id: 4, name: {first: 'Bob', last:'B'}, age: 64}])`  
+
+__Read Operation__  
+Syntax: find([filter, [projection]])
+The filter is an object with property name as field and object value as the sepecification.  
+The projection is the list of fields to retrieve.  
+
+_Filter_  
+Find document with ID of 1
+`> db.employees.findOne({id: {$eq: 1}})`  
+Or use the shorthand method  
+`> db.employees.findOne({id: 1})`
+Find all employees whose age is greaer than or equal to 30  
+`> db.employees.find({age: {$gte: 30}})`  
+Find employees whose age are greater than 30 AND last name is 'Doe'  
+`>  db.employees.find({age: {$gt: 30}, 'name.last': {$eq: 'Doe'}})`  
+Note that in the schema, 'last' is a property of the root field 'name' i.e nested object.  
+
+Find employees whose age is less than 18 OR greater than 60  
+`> db.employees.find({$or: [{age: {$lt: 18}}, {age: {$gt: 60}}]})`  
+
+[MongoDB Operators](https://docs.mongodb.com/manual/reference/operator/query)  
+
+Creating and index on the id field in a collection  
+`> db.employees.createIndex({id: 1})`  
+Create unique index on the id field in the employee collection  
+`> db.employee.createIndex({id: 1}, {unique: true})`   
+Now the find() method will perform much better when a filter with id is supplied. Also creation of a document with a duplicate id will be prevented by MongoDB.  
+If you have dropped the collection after creating the index, you could run the createIndex()
+command to reinstate this index.
+
+_Projection_  
+Fetch only first name and age of all the employees  
+`> db.employees.find({}, {'name.first': 1, age: 1})`  
+Exclude `_id` field from the  fetched documents   
+`> db.employees.find({}, { _id: 0, 'name.first': 1, age: 1 })`  
+
+__Update Operation__    
+Syntax: update(filter, update)  
+Update the age of employee with id  of 2  
+`> db.employees.updateOne({id: 2}, {$set: { age: 23 } })`  
+Add a new field, 'organization' to all employees   
+`> db.employees.updateMany({}, {$set: { organization: 'MyWebstation' }})`  
+Replace the document with and id of 4 by a new document  
+`> db.replaceOne({id: 4}, {id: 4, name: {first: 'Bobby'}, age: 66})`  
+Note the properties 'organization' and 'name.last' will cease to exist in the document of id 4  
+
+__Delete__  
+Delete the document with id of 4  
+`> db.employee.deleteOne({id: 4})`  
+There is also a deleteMany() method.  
+check the nummber of documnets remainign in the collection.    
+`> db.employees.count()`  
+The count method can also take a filter.  
+
+__Aggregate__  
+[MongoDB Aggregate](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline)  
+[MongoDB Aggregation functions](https://docs.mongodb.com/manual/reference/operator/aggregation/group/#accumulator-operator.)  
+
+Retrieve all employees who have middle names  
+`> db.employees.find({$where: "this.name.middle != undefined"})`  
+Or  
+`> db.employees.find({'name.middle': {$exists: true}})`  
+Remove the middle name field from document of id 4  
+`> db.employees.update({id: 4}, {$unset: {'name.middle': ''}})`  
+
+__MongoDB Node.js Driver__  
+Install mongodb Driver  
+`$ npm install mongodb@3`  
+
+__Eval flag__  
+Run mongo command inline   
+Syntact: mongo database_name --eval "command to run"   
+Remove all documents in employees collection of the issuetracker database.   
+`$ mongo issuetracker --eval "db.employees.remove({})"`   
+
+__Running a mongo script__  
+`$ mongo issuetracker script/init.mongo.js`  
+Run using the mongo shell. For remote databases, ensure that the connection string is supplied in the command line.  
+For example:  
+localhost:  
+   `$ mongo issuetracker scripts/init.mongo.js`  
+Atlas:  
+  `$ mongo mongodb+srv://user:pwd@xxx.mongodb.net/issuetracker scripts/init.mongo.js`  
+MLab:  
+  `& mongo mongodb://user:pwd@xxx.mlab.com:33533/issuetracker scripts/init.mongo.js`    
+
+[MongoDB Index Types](https://docs.mongodb.com/manual/indexes/#index-types)
+
+[NodeJS MongoDB Driver]((http://mongodb.github.io/node-mongodb-native)
