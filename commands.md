@@ -23,7 +23,7 @@ Check babel installed verson
 `$ node_module/.bin/babel --version`  
 
 npm gives us `npx` command  which resolves the correct local path of any executable  
-`$ npx babel ---verion`  
+`$ npx babel --verion`  
 `$ npx express --version`
 
 Install the JSX transform preset for babel  
@@ -247,3 +247,24 @@ MLab:
 [NodeJS MongoDB Driver]((http://mongodb.github.io/node-mongodb-native)
 
 ## Chapter 7: Architecture and ESLINT
+[Same Origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)  
+Install the dotenv package  
+`$ npm install dotenv@6`  
+Install the http-proxy-middleware  
+`$ npm install http-proxy-middleware@0`  
+Installing ESLint and it's dependencies on the API   
+`$ npm install --save-dev eslint@5 eslint-plugin-import@2`  
+`$ npm install --save-dev eslint-config-airbnb-base@13`  
+Runnig eslint on the API code  
+`$ npx eslint .`    
+Installing eslint for the UI  
+`$ npm install --save-dev eslint@5 eslint-plugin-import@2`  
+`$ npm install --save-dev eslint-plugin-jsx-a11y@6 eslint-plugin-react@7`   
+`$ npm install --save-dev eslint-config-airbnb @17`  
+Running eslint on the UI code  
+`$ npx eslint . --ignore-pattern public`  
+Another way of ignoring patterns of files is to add them as lines to a text file called .eslintignore.
+This is useful when there are many patterns to be ignored.
+
+Runninng eslint to check React code  
+`$ npx eslint . --ext js,jsx --ignore-pattern public`  

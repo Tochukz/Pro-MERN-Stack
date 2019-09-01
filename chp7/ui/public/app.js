@@ -22,6 +22,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/* eslint "react/react-in-jsx-scope": "off" */
+
+/* globals React ReactDOM PropTypes */
+
+/* eslint "react/jsx-no-undef": "off" */
+
+/* eslint "react/no-multi-comp": "off" */
+
+/* eslint "no-alert": "off" */
+// eslint-disable-next-line react/prefer-stateless-function
 var IssueFilter =
 /*#__PURE__*/
 function (_React$Component) {
@@ -98,7 +108,7 @@ function _graphQLFetch() {
             if (result.errors) {
               error = result.errors[0];
 
-              if (error.extensions.code == 'BAD_USER_INPUT') {
+              if (error.extensions.code === 'BAD_USER_INPUT') {
                 details = error.extensions.exception.errors.join('\n');
                 alert("".concat(error.message, ":\n ").concat(details));
               } else {
@@ -112,10 +122,11 @@ function _graphQLFetch() {
             _context3.prev = 13;
             _context3.t0 = _context3["catch"](1);
 
-            /** Transport error handling*/
+            /** Transport error handling */
             alert("Error in sending data to server: ".concat(_context3.t0.message));
+            return _context3.abrupt("return", 'error');
 
-          case 16:
+          case 17:
           case "end":
             return _context3.stop();
         }
@@ -125,13 +136,14 @@ function _graphQLFetch() {
   return _graphQLFetch.apply(this, arguments);
 }
 
-function IssueRow(props) {
-  var issue = props.issue;
+function IssueRow(_ref) {
+  var issue = _ref.issue;
   return React.createElement("tr", null, React.createElement("td", null, issue.id), React.createElement("td", null, issue.status), React.createElement("td", null, issue.owner), React.createElement("td", null, issue.created.toDateString()), React.createElement("td", null, issue.effort), React.createElement("td", null, issue.due ? issue.due.toDateString() : ' '), React.createElement("td", null, issue.title));
 }
 
-function IssueTable(props) {
-  var issueRows = props.issues.map(function (issue) {
+function IssueTable(_ref2) {
+  var issues = _ref2.issues;
+  var issueRows = issues.map(function (issue) {
     return React.createElement(IssueRow, {
       issue: issue,
       key: issue.id
@@ -168,9 +180,10 @@ function (_React$Component2) {
         title: form.title.value,
         due: new Date(new Date().getTime() + tenDays)
       };
-      this.props.createIssue(issue);
-      form.owner.value = "";
-      form.title.value = "";
+      var createIssue = this.props.createIssue;
+      createIssue(issue);
+      form.owner.value = '';
+      form.title.value = '';
     }
   }, {
     key: "render",
@@ -186,12 +199,18 @@ function (_React$Component2) {
         type: "text",
         name: "title",
         placeholder: "Title"
-      }), React.createElement("button", null, "Add"));
+      }), React.createElement("button", {
+        type: "submit"
+      }, "Add"));
     }
   }]);
 
   return IssueAdd;
 }(React.Component);
+
+IssueAdd.propTypes = {
+  createIssue: PropTypes.func.isRequired
+};
 
 var IssueList =
 /*#__PURE__*/
@@ -295,8 +314,9 @@ function (_React$Component3) {
   }, {
     key: "render",
     value: function render() {
+      var issues = this.state.issues;
       return React.createElement(React.Fragment, null, React.createElement("h1", null, "Issue Tracker"), React.createElement(IssueFilter, null), React.createElement("hr", null), React.createElement(IssueTable, {
-        issues: this.state.issues
+        issues: issues
       }), React.createElement("hr", null), React.createElement(IssueAdd, {
         createIssue: this.createIssue
       }));
