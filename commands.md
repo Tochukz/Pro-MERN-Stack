@@ -245,3 +245,5 @@ MLab:
 [MongoDB Index Types](https://docs.mongodb.com/manual/indexes/#index-types)
 
 [NodeJS MongoDB Driver]((http://mongodb.github.io/node-mongodb-native)
+
+## Chapter 7: Architecture and ESLINT
