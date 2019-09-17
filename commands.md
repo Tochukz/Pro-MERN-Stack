@@ -268,3 +268,20 @@ This is useful when there are many patterns to be ignored.
 
 Runninng eslint to check React code  
 `$ npx eslint . --ext js,jsx --ignore-pattern public`  
+
+## Chpater 8: Modularization and Webpack  
+Installing Webpack  
+`$ npm installl --save-dev webpack@4 webpack-cli@3`  
+Check the installed version of webpack  
+`$ npx webpack --version`  
+To "pack" app.js file and created a bundler called app.bundle.js  
+`$ npx webpack public/app.js --out public/app.bundle.js`  
+TO get rid of the warning message, use the develpment mode:  
+`$ npx webpack public/app.js --output public/app.bundle.js --mode development`   
+Instead of doing babel transforms and after that webpack packing, we use webpack to combine the two processes.  
+To be able to run Babel transforms with webpack we'll need the Babel loader:  
+`$ npm install --save-dev babel-loader@8`   
+Running webpack after defining configuration in webpack.config.js  
+`$ npx webpack`  
+Running webpack in watch mode   
+`$ npx webpack --watch`  
