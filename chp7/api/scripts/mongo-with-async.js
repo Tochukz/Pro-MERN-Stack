@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
