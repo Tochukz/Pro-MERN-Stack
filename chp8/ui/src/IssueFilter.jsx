@@ -1,10 +1,11 @@
-/* globals React */
 /* eslint "react/prefer-stateless-function": "off" */
+
+import React from 'react';
 
 export default class IssueFilter extends React.Component {
   render() {
     return (
-      <div>The is placeholder for the Isssue filter</div>
+      <div>This is a placeholder for the isssues filter!</div>
     );
   }
 }

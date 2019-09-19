@@ -1,6 +1,4 @@
-/* global React */
-/* eslint "react/jsx-no-indef": "off" */
-
+import React from 'react';
 import IssueFilter from './IssueFilter.jsx';
 import IssueTable from './IssueTable.jsx';
 import IssueAdd from './IssueAdd.jsx';
@@ -51,7 +49,7 @@ export default class IssueList extends React.Component {
     const { issues } = this.state;
     return (
       <React.Fragment>
-        <h1>Issue Tracker</h1>
+        <h2>Issue Tracker</h2>
         <IssueFilter />
         <hr />
         <IssueTable issues={issues} />

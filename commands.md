@@ -285,3 +285,20 @@ Running webpack after defining configuration in webpack.config.js
 `$ npx webpack`  
 Running webpack in watch mode   
 `$ npx webpack --watch`  
+Installing the npm packages instead of using CDN  
+`$ npm install react@16 react-dom@16`  
+`$ npm install prop-types@15`  
+`$ npm install whatwg-fetch@3`  
+`$ npm install babel-polyfill@6`  
+
+__Implementing Hot Module Replacement__  
+Install the middleware packages  
+`$ npm install --save-dev webpack-dev-middleware@3`   
+`$ npm install --save-dev webpack-hot-middleware@2`   
+
+To preserve state during HMR you can use the react-hot-loader. This way what ever you input will remain after the automatic reload.
+
+[Webpack Code Spliting](https://webpack.js.org/guides/code-splitting/)  
+[Webpack Lazy Loading](https://webpack.js.org/guides/lazy-loading/)  
+[Webpack Output Management](https://webpack.js.org/guides/output-management/)
+[HTML Webpack Plugin](https://webpack.js.org/plugins/html-webpack-plugin/)
