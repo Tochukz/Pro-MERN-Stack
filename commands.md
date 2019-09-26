@@ -1,6 +1,6 @@
+.
 # Pro MERN Stack  
 [Github Repo](https://github.com/vasansr/pro-mern-stack-2)  
-
 
 ## Chapter 2:  Hello World
 Using nvm: https://github.com/creationix/nvm  
@@ -302,3 +302,17 @@ To preserve state during HMR you can use the react-hot-loader. This way what eve
 [Webpack Lazy Loading](https://webpack.js.org/guides/lazy-loading/)  
 [Webpack Output Management](https://webpack.js.org/guides/output-management/)
 [HTML Webpack Plugin](https://webpack.js.org/plugins/html-webpack-plugin/)
+
+## Chapter 9: React Router
+Installing react router  
+`$ npm install reat-router-dom@4`  
+
+[URLSearchParams API](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+
+Install polyfill to support the URLSearchParams JavaScript API in older browser.   
+`$ npm install url-search-params@1`  
+To include the polyfill you will have to import it:  
+`import URLSearchParams from 'url--searhc-params'`   
+
+[Life Cycle methods](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
+[NavLink Docs](https://reacttraining.com/react-router/web/api/NavLink)  
