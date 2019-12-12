@@ -20,13 +20,13 @@ function validate(issue) {
   }
 }
 
-async function add(_, { newIssue }) {
+async function add(_, { issue }) {
   const db = getDb();
-  validate(newIssue);
-  const issue = Object.assign({}, newIssue);
-  issue.created = new Date();
-  issue.id = await getNextSequence('issues');
-  const result = await db.collection('issues').insertOne(issue);
+  validate(issue);
+  const newIssue = Object.assign({}, issue);
+  newIssue.created = new Date();
+  newIssue.id = await getNextSequence('issues');
+  const result = await db.collection('issues').insertOne(newIssue);
   const saveIssue = await db.collection('issues').findOne({ _id: result.insertedId });
   return saveIssue;
 }
