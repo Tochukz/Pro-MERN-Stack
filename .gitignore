@@ -3,3 +3,4 @@
 */*/public/*.map
 */*/package-lock.json
 */*/.env
+.vscode/

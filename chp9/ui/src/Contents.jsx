@@ -21,7 +21,9 @@ export default function Contents() {
 
 /*
  * React routing system matches route by regular expression by default.
- * So if the exact proprty s removed from the Redirect component, all the route will match the first one.
+ * So if the "exact" property is removed from the Redirect component, all the route will match the first one.
  * 
- * A non-exect route matches full segments of the path, each segment being seperated by /.
+ * The match is a prefix match. For example the path / will match not only / but also /issues and /report.
+ *  
+ * A non-exact route matches full segments of the path, each segment being seperated by /.
  */

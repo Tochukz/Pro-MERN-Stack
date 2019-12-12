@@ -1,6 +1,7 @@
-.
-# Pro MERN Stack  
+# Pro MERN Stack (Second Edition) 
 [Github Repo](https://github.com/vasansr/pro-mern-stack-2)  
+
+## Chapter 1: Introduction
 
 ## Chapter 2:  Hello World
 Using nvm: https://github.com/creationix/nvm  
@@ -84,7 +85,7 @@ class parentClass {
 * In a well-designed application, most components would be stateless functions of their properties.   
   All states would be captured in a few components at the top of the hierarchy, from where the props of all the descendants are derived.  
 
-## Chapter 5: Express and GraphQLchp
+## Chapter 5: Express and GraphQL
 [Express Request](http://expressjs.com/en/api.html#req)   
 [Node.js Request](https://nodejs.org/api/http.html#http_class_http_incomingmessage)  
 [Express Response](http://expressjs.com/en/api.html#res)  
@@ -246,7 +247,7 @@ MLab:
 
 [NodeJS MongoDB Driver]((http://mongodb.github.io/node-mongodb-native)
 
-## Chapter 7: Architecture and ESLINT
+## Chapter 7: Architecture and ESLint
 [Same Origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)  
 Install the dotenv package  
 `$ npm install dotenv@6`  
@@ -312,7 +313,8 @@ Installing react router
 Install polyfill to support the URLSearchParams JavaScript API in older browser.   
 `$ npm install url-search-params@1`  
 To include the polyfill you will have to import it:  
-`import URLSearchParams from 'url--searhc-params'`   
+`import URLSearchParams from 'url--search-params'`   
 
-[Life Cycle methods](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
-[NavLink Docs](https://reacttraining.com/react-router/web/api/NavLink)  
+[Life Cycle methods](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)   
+[NavLink Docs](https://reacttraining.com/react-router/web/api/NavLink)   
+[Component Lifecycle](https://reactjs.org/docs/react-component.html.)   \
