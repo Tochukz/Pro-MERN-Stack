@@ -1,4 +1,4 @@
-# Pro MERN Stack (Second Edition) 
+# Pro MERN Stack (Second Edition) (2019)
 [Github Repo](https://github.com/vasansr/pro-mern-stack-2)  
 
 ## Chapter 1: Introduction
@@ -108,8 +108,7 @@ on the GraphQL playground.
 ## Chapter 6: MongoDB  
 [MongoDB Schema](https://docs.mongodb.com/manual/core/schema-validation/index.html)   
 A database connection is restricted to accessing only one database, so to access multiple databases, multiple connections are required.  
-Unlike relational databases, MongoDB encourages denormalization, that is, storing related parts of a  
-document as embedded subdocuments rather than as separate collections (tables) in a relational database.  
+Unlike relational databases, MongoDB encourages denormalization, that is, storing related parts of a document as embedded subdocuments rather than as separate collections (tables) in a relational database.  
 __MongoDB Services__   
 * [MongoDN Atlas](https://www.mongodb.com/cloud/atlas) A small database (shared RAM, 512 MB storage) is available for free.  
 * [mLab](https://mlab.com) A sandbox environment is available for free, limited to 500 MB storage.   
@@ -118,7 +117,7 @@ __MongoDB Services__
 [Mongo Shell Docs](https://docs.mongodb.com/manual/mongo)   
 __Mongo Shell Basic Operation__  
 Start the mongo shell  
-`$ mongo`  
+`> mongo`  
 Find which databases are available  
 `> show databases`  
 Identify the current DB  
@@ -126,7 +125,7 @@ Identify the current DB
 See what collections exists in the database  
 `> show collections`  
 
-__Note: Satabases and collections are really created only on the first write operation.__  
+__Note:__ Databases and collections are actually created only on the first write operation.  
 
 Switch to a database called issuetracker  
 `> use issuetracker`  
@@ -176,6 +175,8 @@ Note that in the schema, 'last' is a property of the root field 'name' i.e neste
 
 Find employees whose age is less than 18 OR greater than 60  
 `> db.employees.find({$or: [{age: {$lt: 18}}, {age: {$gt: 60}}]})`  
+Find employees whose age is less than or equal to 18 or those who have no age defined
+`> db.issues.find({$or: [{age: {$lte: 10}}, {age: {$exists: false}} ]});`   
 
 [MongoDB Operators](https://docs.mongodb.com/manual/reference/operator/query)  
 
@@ -317,4 +318,36 @@ To include the polyfill you will have to import it:
 
 [Life Cycle methods](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)   
 [NavLink Docs](https://reacttraining.com/react-router/web/api/NavLink)   
-[Component Lifecycle](https://reactjs.org/docs/react-component.html.)   \
+[Component Lifecycle](https://reactjs.org/docs/react-component.html.)   
+
+## Chapter 10: React Form  
+An input form element whose value is controlled by React is called a _controlled component_.  
+
+In React, unidirectional data flow is important, and it does not support two-way data binding as part of the library.  To get hold of the new value from a form input, the `onChange()` event has to be trapped which will have the event as an argument and as part of the event, we can get the new value that the user has selected/entered.
+
+React Child components are not recreated/re-rendered when the `props` passed to them by their parent changes. If a child component needs to react to this change, it needs to implement the `componentDidUpdate()` method. This method gets the previous `props` as argument, and you can then compare it to `this.props`(current props) to determine if the component needs to change it's state.
+
+When Using React, it is best not to use the type attribute of input fields, instead it's best to deal with the validation or masking yourself (or use packages that do it for you.) This lets the behavior be predictable across browsers, as well as allow you to make informed decisions on what to do with invalid input.
+
+__Setting State__  
+It is not advisable to use `this.state` directly when arriving at the new state, as it may not accurately reflect the real current value when other `setState` calls have been made but are yet to take effect. The recommended way it to supply a callback to the `setState` method that takes in the previous state and returns a new state.   
+```
+this.setState(prevState => ({
+  user: {...prevState.user, [city]: 'Amsterdam'},  
+}))
+```  
+
+Some UI modules to checkout `react-numeric-input`, `react-datepicker`  
+
+__Specialized Input Component__    
+To make React reconstruct a child component when a property passed to the child by it's parent changes, use the `key` property and pass a unique value to it.   
+```  
+render() {
+  <Child user={user} key={id} />
+}
+```
+So if the value of `id` changes the `Child` component will be reconstructed.   
+
+__NB:__ React's `onChange` event when applied to say an input element will behave like HTML `onkeypress` event.  
+
+## Chapter 11: React-Bootstrap  
