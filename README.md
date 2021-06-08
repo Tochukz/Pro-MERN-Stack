@@ -110,9 +110,9 @@ on the GraphQL playground.
 A database connection is restricted to accessing only one database, so to access multiple databases, multiple connections are required.  
 Unlike relational databases, MongoDB encourages denormalization, that is, storing related parts of a document as embedded subdocuments rather than as separate collections (tables) in a relational database.  
 __MongoDB Services__   
-* [MongoDN Atlas](https://www.mongodb.com/cloud/atlas) A small database (shared RAM, 512 MB storage) is available for free.  
-* [mLab](https://mlab.com) A sandbox environment is available for free, limited to 500 MB storage.   
-* [Compose]((https://www.compose.com) A 30-day trial period is available, but a permanently free sandbox kind of option is not available.   
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas): A small database (shared RAM, 512 MB storage) is available for free.  
+* [mLab](https://mlab.com): A sandbox environment is available for free, limited to 500 MB storage.   
+* [Compose](https://www.compose.com): A 30-day trial period is available, but a permanently free sandbox kind of option is not available.   
 
 [Mongo Shell Docs](https://docs.mongodb.com/manual/mongo)   
 __Mongo Shell Basic Operation__  
@@ -246,7 +246,7 @@ MLab:
 
 [MongoDB Index Types](https://docs.mongodb.com/manual/indexes/#index-types)
 
-[NodeJS MongoDB Driver]((http://mongodb.github.io/node-mongodb-native)
+[NodeJS MongoDB Driver](http://mongodb.github.io/node-mongodb-native)
 
 ## Chapter 7: Architecture and ESLint
 [Same Origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)  
@@ -351,3 +351,34 @@ So if the value of `id` changes the `Child` component will be reconstructed.
 __NB:__ React's `onChange` event when applied to say an input element will behave like HTML `onkeypress` event.  
 
 ## Chapter 11: React-Bootstrap  
+Install React-Bootstrap  
+```
+> yarn add react-bootstrap
+```
+See react-bootstrap [docs](https://react-bootstrap.github.io/)   
+React-Bootstrap replaces Bootstrap's javascript, it does not provide any file so you stil need to include Boostrap. This can be done in 1 of 2 ways.    
+
+__Method 1__: Include Bootstrap directly in your index.html file  
+```
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+```
+__Method 2__:  Install bootsrap using `npm` or `yarn`
+```
+> yarn add bootstrap@3
+```
+Then import it in your `src/index.js` or `src/App.js` file.
+```
+import 'bootstrap/dist/css/bootstrap.min.css';
+```  
+Browse useful React-Bootstrap component at [components](https://react-bootstrap.github.io/components/alerts/)  
+
+Install react-icons  
+```
+yarn add react-icons
+```
+See React-Icons [docs](https://react-icons.github.io/react-icons/)
